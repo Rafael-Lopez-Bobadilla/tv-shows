@@ -11,5 +11,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: 'https://Rafael-Lopez-Bobadilla.github.io/tv-shows/'
+  base: '/tv-shows/'
 })
