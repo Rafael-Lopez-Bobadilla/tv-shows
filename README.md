@@ -1,9 +1,5 @@
 # tv-shows
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
 ## Project Setup
 
 ```sh
@@ -27,6 +23,10 @@ npm run build
 ```sh
 npm run test
 ```
+
+## Node version: 20.16.0
+
+## NPM version 10.8.1
 
 ## Recommended IDE Setup
 
