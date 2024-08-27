@@ -7,13 +7,21 @@ const useShow = (showId: string) => {
   const loading = ref(false)
   const error = ref(false)
   show.value = showsStore.shows?.find((show) => show.id.toString() === showId)
-  if (!show.value) {
-    loading.value = true
-    getShowById(showId)
-      .then((data) => (show.value = data))
-      .catch(() => (error.value = true))
+  const fetchShow = async () => {
+    try {
+      loading.value = true
+      error.value = false
+      show.value = await getShowById(showId)
+    } catch (err) {
+      error.value = true
+    } finally {
+      loading.value = false
+    }
   }
-  return { show }
+  if (!show.value) {
+    fetchShow()
+  }
+  return { show, loading }
 }
 
 export default useShow
