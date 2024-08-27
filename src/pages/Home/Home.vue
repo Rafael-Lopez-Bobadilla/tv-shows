@@ -8,6 +8,7 @@ const { orderedShows } = useOrderedShows()
 </script>
 <template>
   <div class="container">
+    <h2 v-if="showsStore.loading">Loading...</h2>
     <h1>TV Shows</h1>
     <ShowsList v-for="[genre, shows] in orderedShows" :key="genre" :genre="genre" :shows="shows" />
   </div>
