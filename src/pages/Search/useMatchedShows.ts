@@ -2,12 +2,12 @@ import showsStore from '@/stores/showsStore'
 import type { TShows } from '@/services/schemas/showsSchemas'
 import { ref, watchEffect, type Ref } from 'vue'
 const useMatchedShows = (text: Ref<string>) => {
-  const matchedShows = ref<TShows | null>(null)
+  const matchedShows = ref<TShows | undefined>(undefined)
   if (!showsStore.shows) showsStore.fetchData()
   let timeout: NodeJS.Timeout | null = null
   watchEffect(() => {
     if (timeout) clearTimeout(timeout)
-    if (text.value === '') matchedShows.value = showsStore.shows
+    if (text.value === '') matchedShows.value = showsStore.shows?.slice(0, 20)
     if (text.value !== '') {
       timeout = setTimeout(() => {
         timeout = null
