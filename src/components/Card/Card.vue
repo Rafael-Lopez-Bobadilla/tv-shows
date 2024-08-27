@@ -8,18 +8,27 @@ defineProps<{
 </script>
 <template>
   <RouterLink :to="`/shows/${show.id}`">
-    <img :src="show.image.medium" class="img" />
-    <div class="rating">
-      {{ show.rating.average ? show.rating.average : '--' }}
-      <div><Star /></div>
+    <div class="card">
+      <img :src="show.image.medium" class="img" />
+      <div class="rating">
+        {{ show.rating.average ? show.rating.average : '--' }}
+        <div><Star /></div>
+      </div>
     </div>
   </RouterLink>
 </template>
 
 <style scoped>
+.card {
+  position: relative;
+}
 .img {
   width: 120px;
   border-radius: 5px;
+  border: 2px solid transparent;
+  &:hover {
+    border: 2px solid white;
+  }
 }
 .rating {
   position: absolute;

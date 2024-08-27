@@ -13,7 +13,6 @@ const useMatchedShows = (text: Ref<string>) => {
         timeout = null
         const pattern = new RegExp(text.value, 'i')
         const matched = showsStore.shows?.filter((show) => pattern.test(show.name))
-        if (!matched) matchedShows.value = []
         if (matched) matchedShows.value = matched
       }, 300)
     }

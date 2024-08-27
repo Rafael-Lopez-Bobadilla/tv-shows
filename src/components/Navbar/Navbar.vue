@@ -23,7 +23,7 @@ const routes = [
   text-align: center;
   padding: 20px 5px;
   position: fixed;
-  z-index: 2;
+  z-index: 4;
   top: 0;
 }
 

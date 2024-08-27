@@ -51,7 +51,6 @@ const { matchedShows } = useMatchedShows(text)
 
 .card {
   margin: 10px;
-  position: relative;
   &:hover {
     transform: scale(1.05);
   }
