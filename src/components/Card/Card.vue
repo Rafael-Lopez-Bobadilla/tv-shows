@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <RouterLink :to="`/shows/${show.id}`">
     <div class="card">
-      <img :src="show.image.medium" class="img" />
+      <img :src="show.image.medium" class="img" loading="lazy" alt="show" />
       <div class="rating">
         {{ show.rating.average ? show.rating.average : '--' }}
         <div><Star /></div>

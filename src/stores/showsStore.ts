@@ -6,7 +6,7 @@ type TShowsStore = {
   shows: TShows | null
   loading: boolean
   error: boolean
-  fetchData: () => void
+  fetchData: () => Promise<void>
 }
 const showsStore = reactive<TShowsStore>({
   shows: null,

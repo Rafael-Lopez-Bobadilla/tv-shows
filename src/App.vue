@@ -12,6 +12,7 @@ import Navbar from './components/Navbar/Navbar.vue'
 @font-face {
   font-family: 'Inter';
   src: url('./assets/fonts/Inter-VariableFont_slnt,wght.ttf');
+  /*font-display: swap;*/
 }
 
 * {
