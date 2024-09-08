@@ -22,7 +22,7 @@ export const country2Schema = z.object({
 })
 
 export const externalsSchema = z.object({
-  tvrage: z.number(),
+  tvrage: z.number().nullable(),
   thetvdb: z.number().optional().nullable(),
   imdb: z.string().optional().nullable()
 })
@@ -86,12 +86,14 @@ export const showSchema = z.object({
   webChannel: webChannelSchema.optional().nullable(),
   dvdCountry: z.any(),
   externals: externalsSchema,
-  image: imageSchema,
-  summary: z.string(),
+  image: imageSchema.nullable(),
+  summary: z.string().nullable(),
   updated: z.number(),
   _links: linksSchema
 })
 
 export const showsSchema = z.array(showSchema)
+export const showsWithScore = z.array(z.object({ score: z.number(), show: showSchema }))
 export type TShows = z.infer<typeof showsSchema>
 export type TShow = z.infer<typeof showSchema>
+export type TShowWithScore = z.infer<typeof showsWithScore>

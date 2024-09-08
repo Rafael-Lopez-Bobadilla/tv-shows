@@ -9,7 +9,16 @@ defineProps<{
 <template>
   <RouterLink :to="`/shows/${show.id}`">
     <div class="card">
-      <img :src="show.image.medium" class="img" loading="lazy" alt="show" />
+      <img
+        v-if="show.image?.medium"
+        :src="show.image.medium"
+        class="img"
+        loading="lazy"
+        alt="show"
+      />
+      <div v-else class="img">
+        <p>No image available for this show</p>
+      </div>
       <div class="rating">
         {{ show.rating.average ? show.rating.average : '--' }}
         <div><Star /></div>
@@ -30,6 +39,12 @@ defineProps<{
     border: 2px solid white;
   }
 }
+
+.img > p {
+  text-align: center;
+  padding: 0 15px;
+}
+
 .rating {
   position: absolute;
   right: 10px;

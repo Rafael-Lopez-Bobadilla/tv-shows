@@ -8,10 +8,10 @@ const { show, loading } = useShow(route.params.showId as string)
   <div class="container">
   <h1 v-if="loading">Loading...</h1>
   <main class="main" v-if="show">
-    <div><img class="img" :src="show.image.original" /></div>
+    <div><img class="img" :src="show.image?.original" /></div>
     <div class="info">
       <h1>{{ show.name }}</h1>
-      <p>{{ show.summary.replace(/<\/?(p|b|br|i)\b[^>]*>/g, '') }}</p>
+      <p>{{ show.summary?.replace(/<\/?(p|b|br|i)\b[^>]*>/g, '') }}</p>
       <p>
         Genres:
         <ul><li v-for="genre in show.genres" :key="genre">{{ ` ${genre}` }}</li></ul>

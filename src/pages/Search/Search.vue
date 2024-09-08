@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import Card from '@/components/Card/Card.vue'
-import { ref } from 'vue'
 import useMatchedShows from './useMatchedShows'
-const text = ref('')
-const { matchedShows } = useMatchedShows(text)
+const { text, matchedShows } = useMatchedShows()
 </script>
 <template>
   <div class="container">

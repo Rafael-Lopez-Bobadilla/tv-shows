@@ -1,7 +1,9 @@
 import showsStore from '@/stores/showsStore'
 import type { TShows } from '@/services/schemas/showsSchemas'
-import { ref, watchEffect, type Ref } from 'vue'
-const useMatchedShows = (text: Ref<string>) => {
+import { ref, watchEffect } from 'vue'
+import { getShowsByQuery } from '@/services/services'
+const useMatchedShows = () => {
+  const text = ref('')
   const matchedShows = ref<TShows | undefined>(undefined)
   if (!showsStore.shows) showsStore.fetchData()
   let timeout: NodeJS.Timeout | null = null
@@ -9,15 +11,15 @@ const useMatchedShows = (text: Ref<string>) => {
     if (timeout) clearTimeout(timeout)
     if (text.value === '') matchedShows.value = showsStore.shows?.slice(0, 20)
     if (text.value !== '') {
-      timeout = setTimeout(() => {
+      timeout = setTimeout(async () => {
         timeout = null
-        const pattern = new RegExp(text.value, 'i')
-        const matched = showsStore.shows?.filter((show) => pattern.test(show.name))
-        if (matched) matchedShows.value = matched
+        const matched = await getShowsByQuery(text.value)
+        const shows = matched.map((matched) => matched.show)
+        if (matched) matchedShows.value = shows
       }, 300)
     }
   })
-  return { matchedShows }
+  return { text, matchedShows }
 }
 
 export default useMatchedShows
