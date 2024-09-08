@@ -16,7 +16,8 @@ defineProps<{
         loading="lazy"
         alt="show"
       />
-      <div v-else class="img">
+      <div v-else class="noImg">
+        <h3>{{ show.name }}</h3>
         <p>No image available for this show</p>
       </div>
       <div class="rating">
@@ -29,20 +30,25 @@ defineProps<{
 
 <style scoped>
 .card {
+  background-color: rgb(54, 70, 94);
   position: relative;
-}
-.img {
-  width: 120px;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
   border-radius: 5px;
-  border: 2px solid transparent;
+  width: 120px;
+  aspect-ratio: 42/59;
   &:hover {
     border: 2px solid white;
   }
 }
+.img {
+  width: 100%;
+}
 
-.img > p {
+.noImg {
   text-align: center;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .rating {
@@ -62,7 +68,7 @@ defineProps<{
   margin-left: 5px;
 }
 @media (min-width: 768px) {
-  .img {
+  .card {
     width: 180px;
   }
 }

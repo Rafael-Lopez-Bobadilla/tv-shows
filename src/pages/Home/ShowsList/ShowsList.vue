@@ -10,9 +10,12 @@ defineProps<{
 }>()
 const list = ref<HTMLDivElement | null>(null)
 const moveList = (direction: 'left' | 'right') => {
-  const width = list.value?.clientWidth
-  if (direction === 'right' && width) list.value?.scrollBy(width, 0)
-  if (direction === 'left' && width) list.value?.scrollBy(-width, 0)
+  const listWidth = list.value?.clientWidth
+  const cardWidth = list.value?.firstElementChild?.clientWidth
+  if (!listWidth || !cardWidth) return
+  const scroll = Math.floor(listWidth / cardWidth) - 1
+  if (direction === 'right') list.value?.scrollBy(scroll * cardWidth, 0)
+  if (direction === 'left') list.value?.scrollBy(-scroll * cardWidth, 0)
 }
 </script>
 <template>
